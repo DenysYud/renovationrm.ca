@@ -115,16 +115,12 @@ jQuery(document).ready(function () {
 		}
 	})
 
-	
-	
 /*preloder*/
 $(window).load(function() { // makes sure the whole site is loaded
 	$('#status').fadeOut(); // will first fade out the loading animation
 	$('#loader-wrapper').delay(200).fadeOut('slow'); // will fade out the white DIV that covers the website.
 	$('body').delay(200).css({'overflow-x':'hidden'});
 })	
-	
-	
 
 /* AJAX Submit*/
 $('#contact-form').submit(function(e){
@@ -149,11 +145,6 @@ $('#contact-form').submit(function(e){
     
 });
 
-$(document).ready(function() {
-		$(".fancybox").fancybox();
-	});
-
-
 $( document ).ready(function() {
 	var windowWidth = $(window).width();
 	if (windowWidth < 768) {
@@ -167,6 +158,29 @@ $( document ).ready(function() {
 
 });
 
-$(window).load(function() {
-	$('.blueberry').blueberry();
-});
+ //Active menu item
+ $('#nav_menu a').click(function() {
+	 var href = $(this).attr('href');
+	 var n = 0;
+	 var links = [];
+	 $('#nav_menu a').each(function() {
+		 if ($('#nav_menu a').hasClass('highlight')) {
+			 $(this).removeClass('highlight');
+		 }
+	 });
+	 $('#nav_menu a').each(function() {
+		 links[n] = $(this).attr('href');
+		 n ++;
+	 });
+	 for (i=0; i < links.length; i++) {
+		 if (href == links[i]) {
+			 $(this).addClass('highlight');
+		 }
+
+		 if (url == links[i]) {
+			 $(this).addClass('highlight');
+		 }
+	 }
+ });
+ var url = window.location.href;
+ $('#nav_menu a[href="'+ url +'"]').addClass('highlight');
