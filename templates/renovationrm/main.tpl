@@ -4,8 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>{$site_title}</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="{$site_description}">
     <meta name="keywords" content="{$site_keywords}">
     <!--base href="{$THEME}"-->
@@ -86,7 +85,6 @@
                             </div>
                         </nav>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -611,18 +609,13 @@
 <script type="text/javascript">
     {literal}
     $(document).ready(function(){
-
-
         $('.show_hide').showHide({
             speed: 1000,  // speed you want the toggle to happen
             easing: '',  // the animation effect you want. Remove this line if you dont want an effect and if you haven't included jQuery UI
             changeText: 1, // if you dont want the button text to change, set this to 0
             showText: 'View',// the button text to show when a div is closed
             hideText: 'Close' // the button text to show when a div is open
-
         });
-
-
     });
     {/literal}
 </script>
@@ -655,6 +648,16 @@
             autohidemode:true
         });
 
+    });
+
+    //Show blueberry slider
+    $(window).load(function() {
+        $('.blueberry').blueberry();
+    });
+
+    //Activate fancybox
+    $(document).ready(function() {
+        $(".fancybox").fancybox();
     });
     {/literal}
 </script>
