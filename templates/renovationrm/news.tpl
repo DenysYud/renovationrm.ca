@@ -25,8 +25,9 @@
 <body >
 <!-- start preloader -->
 <div id="loader-wrapper">
-    <div class="logo"></div>
+    <div class="logo">
         <img src="{$THEME}img/01.png" width="50" height="50">
+    </div>
     <div id="loader">
     </div>
 </div>
@@ -56,23 +57,25 @@
                             </button>
                             <div id="navbar">
                                 <ul>
-                                    <li><a class="page-scroll" href="#home">Home</a></li>
-
-                                    <li><a href="#">Static Page<i class="fa fa-angle-down"></i></a>
-                                        <ul>
-                                            <li><a class="page-scroll" href="#">Blog Page</a></li>
-                                            <li><a class="page-scroll" href="#">Single Blog Page</a></li>
-                                        </ul>
-                                    </li>
+                                    <li><a class="page-scroll highlight" href="#slider_sec">Home</a></li>
+                                    <li><a class="page-scroll" href="#">News</a></li>
                                     <li><a class="page-scroll" href="#abt_sec">About</a></li>
                                     <li><a class="page-scroll" href="#skill_sec">Our Skill</a></li>
                                     <li><a class="page-scroll" href="#pr_sec">Our Service</a></li>
                                     <li><a class="page-scroll" href="#protfolio_sec">Our Portfolio</a></li>
                                     <li><a class="page-scroll" href="#ctn_sec">Contact Us</a></li>
+                                    <li><a href="#search"><i class="fa fa-search"></i> Search</a></li>
                                 </ul>
                             </div>
                         </nav>
                     </div>
+                </div>
+                <!-- Search Form -->
+                <div id="search">
+                    <span class="close">X</span>
+                    <form role="search" id="searchform" action="/search" method="get">
+                        <input value="" name="q" type="search" placeholder="type to search"/>
+                    </form>
                 </div>
             </div>
         </div>
@@ -85,8 +88,8 @@
     <div class="container">
         <div class="row">
             <div class="title_sec">
-                <h1>Our Blog</h1>
-                <h2>WE’RE BRANDING & DIGITAL STUDIO FROM VIET NAM</h2>
+                <h1>News</h1>
+                <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>
             </div>
             <div class="col-lg-8 col-md-8 col-sm-8 ">
                 <div class="sngl_blg">
@@ -151,9 +154,6 @@
 
             <div class="col-lg-4 col-md-4 col-sm-4">
                 <div class="sidebar">
-                    <div class="search_widget">
-                        <input id="sr_bx" type="text" placeholder="Search...."/>
-                    </div>
                     <div class="widget">
                         <h2>categories</h2>
                         <div class="title_br"></div>
@@ -207,6 +207,17 @@
             </div>
         </div>
     </div>
+    <div class="col-lg-8 col-md-8 col-sm-8 pagination-wrapper">
+        <ul class="pagination">
+            <li class="disabled"><a href="#">&laquo;</a></li>
+            <li><a href="#">1</a></li>
+            <li class="active"><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>
+    </div>
 </section>
 <!-- start Blog Section -->
 
@@ -240,7 +251,7 @@
         </ul>
     </div>
 </section>
-
+<a href="#" class="scrollup"></a>
 <!-- End located map  Section -->
 <!-- start footer Section -->
 <footer id="ft_sec">
@@ -270,95 +281,26 @@
 </footer>
 <!-- End footer Section -->
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="{$THEME}js/vendor/jquery-1.11.2.min.js"></script>
-
 <script src="{$THEME}js/isotope.pkgd.min.js"></script>
-<script src="{$THEME}js/bootstrap.min.js"></script>
-<script src="{$THEME}js/jquery-ui.js"></script>
 <script src="{$THEME}js/appear.js"></script>
 <script src="{$THEME}js/jquery.counterup.min.js"></script>
 <script src="{$THEME}js/waypoints.min.js"></script>
 <script src="{$THEME}js/owl.carousel.min.js"></script>
-<script src="{$THEME}js/showHide.js"></script>
 <script src="{$THEME}js/jquery.nicescroll.min.js"></script>
 <script src="{$THEME}js/jquery.easing.min.js"></script>
 <script src="{$THEME}js/scrolling-nav.js"></script>
 <script src="{$THEME}js/plugins.js"></script>
+<!--<script src="{$THEME}js/blueberry/jquery.blueberry.js" type="text/javascript"></script>
+<script type="text/javascript" src="{$THEME}js/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+<script type="text/javascript" src="{$THEME}js/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+<script type="text/javascript" src="{$THEME}js/fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+<script type="text/javascript" src="{$THEME}js/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+<script type="text/javascript" src="{$THEME}js/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>-->
 <!-- Google Map js -->
 <script src="https://maps.googleapis.com/maps/api/js"></script>
-<script>
-    {literal}
-    function initialize() {
-        var mapOptions = {
-            zoom: 14,
-            scrollwheel: false,
-            center: new google.maps.LatLng(41.092586000000000000, -75.592688599999970000)
-        };
-        var map = new google.maps.Map(document.getElementById('googleMap'),
-                mapOptions);
-        var marker = new google.maps.Marker({
-            position: map.getCenter(),
-            animation:google.maps.Animation.BOUNCE,
-            icon: 'img/map-marker.png',
-            map: map
-        });
-    }
-    google.maps.event.addDomListener(window, 'load', initialize);
-    {/literal}
-</script>
+<!--<script src="{$THEME}js/homepage.js"></script>-->
 <script src="{$THEME}js/main.js"></script>
-
-<script src="{$THEME}showHide.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-    {literal}
-
-    $(document).ready(function(){
-        $('.show_hide').showHide({
-            speed: 1000,  // speed you want the toggle to happen
-            easing: '',  // the animation effect you want. Remove this line if you dont want an effect and if you haven't included jQuery UI
-            changeText: 1, // if you dont want the button text to change, set this to 0
-            showText: 'View',// the button text to show when a div is closed
-            hideText: 'Close' // the button text to show when a div is open
-        });
-    });
-    {/literal}
-</script>
-<script>
-    {literal}
-    jQuery(document).ready(function( $ ) {
-        $('.counter').counterUp({
-            delay: 10,
-            time: 1000
-        });
-    });
-    {/literal}
-</script>
-
-<script>
-    {literal}
-    //Hide Overflow of Body on DOM Ready //
-    $(document).ready(function(){
-        $("body").css("overflow", "hidden");
-    });
-
-    // Show Overflow of Body when Everything has Loaded
-    $(window).load(function(){
-        $("body").css("overflow", "visible");
-        var nice=$('html').niceScroll({
-            cursorborder:"5",
-            cursorcolor:"#00AFF0",
-            cursorwidth:"3px",
-            boxzoom:true,
-            autohidemode:true
-        });
-
-    });
-    {/literal}
-</script>
-
-
+<script src="{$THEME}js/showHide.js" type="text/javascript"></script>
 
 </body>
 </html>
