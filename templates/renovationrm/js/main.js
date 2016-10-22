@@ -22,13 +22,16 @@ return false;
 	});
 });
 });
+ //Make start logo displaing on center of the rings
 
+ $('#startImg').load(function(){
+     var startImage = $(this).width();
+	 var left = (startImage / 2) * -1;
+	 $(this).css( "left", left+"px")
+ });
 
+ jQuery(document).ready(function () {
 
-
-jQuery(document).ready(function () {
-
-	
 /*----------------------------------------------------*/
 /*  Animated Progress Bars
 /*----------------------------------------------------*/
@@ -43,6 +46,109 @@ jQuery(document).ready(function () {
         }); 
     });   
 
+
+	
+	
+	/*preloder*/
+	$(window).load(function() { // makes sure the whole site is loaded
+		$('#status').fadeOut(); // will first fade out the loading animation
+		$('#loader-wrapper').delay(200).fadeOut('slow'); // will fade out the white DIV that covers the website.
+		$('body').delay(200).css({'overflow-x':'hidden'});
+	});	
+	
+	/* AJAX Submit*/
+	$('#contact-form').submit(function(e){
+		
+    	e.preventDefault(); // Prevent Default Submission
+		
+    	$.ajax({
+		url: 'submit.php',
+		type: 'POST',
+		data: $(this).serialize(), // it will serialize the form data
+        	dataType: 'html'
+    	}).done(function(data){
+        	$('#name').val('');
+        	$('#email').val('');
+        	$('#message').val('');
+        	alert('Ajax Submit succeeded');
+    	}).fail(function(){
+		alert('Ajax Submit Failed');	
+    	});   
+	});
+
+//Menu toggle on smal screens
+	var windowWidth = $(window).width();
+		if (windowWidth < 768) {
+			$("#navbar").toggle();
+		}
+     
+     	$('#open').click(function(){
+    		$('#navbar').toggle();
+		});
+   
+
+	//showHide
+	$('.show_hide').showHide({			 
+		speed: 1000,  // speed you want the toggle to happen	
+		easing: '',  // the animation effect you want. Remove this line if you dont want an effect and if you haven't included jQuery UI
+		changeText: 1, // if you dont want the button text to change, set this to 0
+		showText: 'View',// the button text to show when a div is closed
+		hideText: 'Close' // the button text to show when a div is open
+					 
+	}); 
+
+	/*Search box popup*/
+	$('a[href="#search').on('click', function(event) {                    
+		$('#search').addClass('open');
+		$('#search > form > input[type="search"]').focus();
+	});            
+	$('#search, #search button.close').on('click keyup', function(event) {
+		if (event.target == this || event.target.className == 'close' || event.keyCode == 27) {
+			$(this).removeClass('open');
+		}
+	});    
+
+	 $('.counter').counterUp({
+            delay: 10,
+            time: 1000
+        });        
+	 //Google map
+	 function initialize() {
+			  var mapOptions = {
+				zoom: 14,
+				scrollwheel: false,
+				center: new google.maps.LatLng(48.62235, 22.295351)
+			  };
+			  var map = new google.maps.Map(document.getElementById('googleMap'),
+				  mapOptions);
+			  var marker = new google.maps.Marker({
+				position: map.getCenter(),
+				animation:google.maps.Animation.BOUNCE,
+				icon: 'img/map-marker.png',
+				map: map
+			  });
+			}
+			google.maps.event.addDomListener(window, 'load', initialize);
+
+	//Hide Overflow of Body on DOM Ready //
+    $("body").css("overflow", "hidden");
+
+	// Show Overflow of Body when Everything has Loaded 
+	$(window).load(function(){
+    	$("body").css("overflow", "visible");        
+    		var nice=$('html').niceScroll({
+			cursorborder:"5",
+			cursorcolor:"#00AFF0",
+			cursorwidth:"3px",
+			boxzoom:true, 
+			autohidemode:true
+		});
+	});
+
+});
+
+
+$(window).load(function(){
 /*----------------------------------------------------*/
 /* Crousel Team 
 /*----------------------------------------------------*/
@@ -115,72 +221,10 @@ jQuery(document).ready(function () {
 		}
 	})
 
-/*preloder*/
-$(window).load(function() { // makes sure the whole site is loaded
-	$('#status').fadeOut(); // will first fade out the loading animation
-	$('#loader-wrapper').delay(200).fadeOut('slow'); // will fade out the white DIV that covers the website.
-	$('body').delay(200).css({'overflow-x':'hidden'});
-})	
-
-/* AJAX Submit*/
-$('#contact-form').submit(function(e){
-		
-    e.preventDefault(); // Prevent Default Submission
-		
-    $.ajax({
-	url: 'submit.php',
-	type: 'POST',
-	data: $(this).serialize(), // it will serialize the form data
-        dataType: 'html'
-    })
-    .done(function(data){
-        $('#name').val('');
-        $('#email').val('');
-        $('#message').val('');
-        alert('Ajax Submit succeeded');
-    })
-    .fail(function(){
-	alert('Ajax Submit Failed');	
-    });
-    
 });
 
-$( document ).ready(function() {
-	var windowWidth = $(window).width();
-	if (windowWidth < 768) {
-		$("#navbar").toggle();
-	}
-     
-     $('#open').click(function(){
-    	$('#navbar').toggle();
-	});
- });   
 
-});
 
- //Active menu item
- $('#nav_menu a').click(function() {
-	 var href = $(this).attr('href');
-	 var n = 0;
-	 var links = [];
-	 $('#nav_menu a').each(function() {
-		 if ($('#nav_menu a').hasClass('highlight')) {
-			 $(this).removeClass('highlight');
-		 }
-	 });
-	 $('#nav_menu a').each(function() {
-		 links[n] = $(this).attr('href');
-		 n ++;
-	 });
-	 for (i=0; i < links.length; i++) {
-		 if (href == links[i]) {
-			 $(this).addClass('highlight');
-		 }
+			
 
-		 if (url == links[i]) {
-			 $(this).addClass('highlight');
-		 }
-	 }
- });
- var url = window.location.href;
- $('#nav_menu a[href="'+ url +'"]').addClass('highlight');
+
